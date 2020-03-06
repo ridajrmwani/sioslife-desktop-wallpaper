@@ -10,9 +10,9 @@ categories:
       - "fix"
       - "bugfix"
       - "bug"
-  - title: "🧰 Maintenance"
-    label: "chore"
-change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+  - title: " 📘 Documentation"
+    labels:
+      - "documentation"
 template: |
   ## Changes
 
