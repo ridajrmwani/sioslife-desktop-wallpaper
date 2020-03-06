@@ -1,0 +1,29 @@
+name: Release
+
+on: pull_request
+
+jobs:
+  release:
+    name: Packaging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Release
+        uses: ridedott/release-me-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          dry-run: true
+          node-module: true
+          release-assets: |
+            ./generated/my-asset.tar.gz
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          registry-url: "https://npm.pkg.github.com"
+      - env:
+          NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        name: Publish to GitHub Packages
+        run: npm publish

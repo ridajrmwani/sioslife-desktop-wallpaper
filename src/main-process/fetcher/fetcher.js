@@ -1,7 +1,7 @@
-const reddit = require('./websites/reddit/reddit');
+const reddit = require('./websites/reddit/reddit')
 
 const fetcher = {
-  reddit: reddit
-};
+    reddit: reddit,
+}
 
-module.exports = fetcher;
+module.exports = fetcher
