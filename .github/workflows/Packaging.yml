@@ -1,10 +1,17 @@
 name: Packaging
 
 on:
-  push:
-    branches:
-      - master
+  create:
+    tags:
+      - "v*"
+
 jobs:
+  Release:
+    name: Release GitHub Actions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/release-github-actions@v4
+
   Packaging:
     name: Packaging
     runs-on: ubuntu-latest
