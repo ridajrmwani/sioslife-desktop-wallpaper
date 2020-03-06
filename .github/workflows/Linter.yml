@@ -1,21 +1,21 @@
-name: Lint
+name: Linters
 
 on: pull_request
 
 jobs:
-  linters:
-    name: Run linters
+  Linter:
+    name: Linters
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
+      - name: Check out
         uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
       # ESLint and Prettier must be in `package.json`
-      - name: Install Node.js dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Run linters
@@ -25,3 +25,4 @@ jobs:
           auto_fix: ${{ github.event_name == 'pull_request' }}
           # Enable linters
           eslint: true
+          prettier: true

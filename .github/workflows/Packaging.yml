@@ -1,9 +1,11 @@
-name: Release
+name: Packaging
 
-on: pull_request
-
+on:
+  deployment:
+    branches:
+      - master
 jobs:
-  release:
+  Packaging:
     name: Packaging
     runs-on: ubuntu-latest
     steps:
