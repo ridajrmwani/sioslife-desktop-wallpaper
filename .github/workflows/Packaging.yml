@@ -9,7 +9,6 @@ on:
       - "v*"
   release:
     types:
-      - created
       - published
 
 jobs:
@@ -34,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build --if-present
 
-      - name: Release
+      - name: package
         uses: ridedott/release-me-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -44,12 +43,20 @@ jobs:
             ./dist
           release-assets: |
             ./generated/my-asset.tar.gz
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          registry-url: "https://npm.pkg.github.com"
-      - env:
-          NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        name: Publish to GitHub Packages
-        run: npm publish
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     registry-url: "https://npm.pkg.github.com"
+      # - env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #   name: Publish to GitHub Packages
+      #   run: npm publish
+  Delivering:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Release
+        uses: ridedott/publish-me-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
