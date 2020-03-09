@@ -25,4 +25,3 @@ jobs:
           auto_fix: ${{ github.event_name == 'pull_request' }}
           # Enable linters
           eslint: true
-          #prettier: true
