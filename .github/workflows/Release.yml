@@ -1,0 +1,31 @@
+name: Releasing
+
+on:
+  push:
+    tags:
+      - "v*"
+  create:
+    tags:
+      - "v*"
+
+jobs:
+  Releasing:
+    name: Upload Release Asset
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: npm install
+        run: npm ci
+      - name: npm build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build --if-present
+      - name: Release
+        uses: ridedott/release-me-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          node-module: true
+          release-assets: |
+            ./dis

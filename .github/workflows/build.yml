@@ -6,7 +6,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [ubuntu-latest]
+        #os: [macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -18,7 +19,7 @@ jobs:
           node-version: "12.x"
       - name: npm install
         run: npm ci
-      - name: npm build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run build --if-present
+      # - name: npm build
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   #run: npm run build --if-present
