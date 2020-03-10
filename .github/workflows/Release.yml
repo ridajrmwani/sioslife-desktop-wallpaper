@@ -28,4 +28,4 @@ jobs:
         with:
           node-module: true
           release-assets: |
-            ./dis
+            ./dist
