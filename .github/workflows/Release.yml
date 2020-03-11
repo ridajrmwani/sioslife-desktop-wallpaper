@@ -4,28 +4,15 @@ on:
   push:
     tags:
       - "v*"
-  create:
-    tags:
-      - "v*"
 
 jobs:
   Releasing:
     name: Upload Release Asset
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: npm install
-        run: npm ci
-      - name: npm build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run build --if-present
       - name: Release
-        uses: ridedott/release-me-action@master
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          node-module: true
-          release-assets: |
-            ./dist
