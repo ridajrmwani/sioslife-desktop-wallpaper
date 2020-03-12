@@ -8,11 +8,22 @@ on:
 jobs:
   Releasing:
     name: Upload Release Asset
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Npm install
+        run: npm install
+      - name: Npm build
+        run: npm run build --if-present
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: ridedott/release-me-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release-assets: |
+            ./dist/
