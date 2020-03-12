@@ -25,5 +25,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          release-assets: |
-            ./dist/
+          commit-assets: |
+            ./dist
