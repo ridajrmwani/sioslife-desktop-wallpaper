@@ -23,7 +23,7 @@ jobs:
       - name: Release
         uses: ridedott/release-me-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           release-assets: |
             ./dist/
