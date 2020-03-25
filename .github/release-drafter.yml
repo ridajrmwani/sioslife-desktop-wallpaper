@@ -13,11 +13,16 @@ categories:
       - "documentation"
 template: |
   ## Changes
+
   $CHANGES
+
   ---
+
   ### 👽 Contributors
   Our big thanks to:
   $CONTRIBUTORS
+
   ---
+
   ### 🏷️ Previous tag
   $PREVIOUS_TAG
